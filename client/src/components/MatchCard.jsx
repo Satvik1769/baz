@@ -1,119 +1,64 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Timeline from "./Timeline";
+
 const MatchCard = () => {
   const navigate = useNavigate();
+
   return (
-    <div style={styles.card}>
-      <div style={styles.header}>
-        <h3 style={styles.title}>UPCOMING CRICKET MATCHES</h3>
-        <p>Sri Lanka vs England ODI</p>
-        <div style={styles.matchInfo}>
-          <div style={styles.team}>
+    <div className="border border-gray-300 rounded-lg p-6 max-w-[400px] sm:max-w-[500px] mx-auto shadow-md mt-5">
+      <div className="text-center mb-5">
+        <h3 className="text-xl font-bold text-red-600">
+          UPCOMING CRICKET MATCHES
+        </h3>
+        <p className="mt-1">Sri Lanka vs England ODI</p>
+        <div className="flex justify-between items-center mt-4">
+          <div className="flex flex-col items-center">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg"
               alt="Sri Lanka"
-              style={styles.flag}
+              className="w-10 h-8 mb-2"
             />
             <p>Sri Lanka</p>
           </div>
-          <div>
+          <div className="text-center">
             <p>Match starts in</p>
-            <p style={styles.countdown}>23h 16m</p>
+            <p className="text-red-600 font-bold">23h 16m</p>
           </div>
-          <div style={styles.team}>
+          <div className="flex flex-col items-center">
             <img
               src="https://imgs.search.brave.com/8d3ZkPb8BkK5FB1beglpOcT3Kq7lY6HL6FwzeStNAz0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJpdGFubmljYS5j/b20vNDQvMzQ0LTA1/MC05NDUzNjY3NC9G/bGFnLUVuZ2xhbmQu/anBn"
-              style={styles.flag}
+              alt="England"
+              className="w-10 h-8 mb-2"
             />
             <p>England</p>
           </div>
         </div>
       </div>
-      <div style={styles.prizeInfo}>
-        <div>
-          <p style={styles.prizePool}>Prize Pool</p>
-          <h2>₹10 Crores</h2>
+
+      <div className="flex justify-between text-center mb-5">
+        <div className="flex flex-col">
+          <p className="text-sm">Prize Pool</p>
+          <strong className="text-xl font-bold">10 Crore</strong>
         </div>
-        <div>
-          <p style={styles.firstPrize}>1st Prize</p>
-          <h2>₹1 Crore</h2>
-        </div>
-        <div>
-          <p>28,17,210 spots left</p>
-          <p>28,34,467 spots</p>
+        <div className="flex flex-col">
+          <p className="text-sm">1st Prize</p>
+          <strong className="text-xl font-bold">1 Crore</strong>
         </div>
       </div>
-      <div style={styles.join}>
-        <button style={styles.joinButton} onClick={() => navigate("/team")}>
+
+      <Timeline />
+
+      <div className="text-center mt-5">
+        <button
+          className="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700"
+          onClick={() => navigate("/team")}
+        >
           Join Now
         </button>
       </div>
     </div>
   );
-};
-
-const styles = {
-  card: {
-    border: "1px solid #ddd",
-    borderRadius: "10px",
-    padding: "20px",
-    maxWidth: "400px",
-    margin: "20px auto",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-  },
-  header: {
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  title: {
-    fontSize: "18px",
-    fontWeight: "bold",
-    color: "#d32f2f",
-  },
-  matchInfo: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  team: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  flag: {
-    width: "40px",
-    height: "30px",
-    marginBottom: "5px",
-  },
-  countdown: {
-    color: "#d32f2f",
-    fontWeight: "bold",
-  },
-  prizeInfo: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "20px",
-    marginBottom: "20px",
-  },
-  prizePool: {
-    fontWeight: "bold",
-    color: "#757575",
-  },
-  firstPrize: {
-    fontWeight: "bold",
-    color: "#4caf50",
-  },
-  join: {
-    textAlign: "center",
-  },
-  joinButton: {
-    backgroundColor: "#4caf50",
-    color: "#fff",
-    padding: "10px 20px",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
 };
 
 export default MatchCard;

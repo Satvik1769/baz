@@ -1,10 +1,12 @@
 # Client
 /client/node_modules
 /client/package-lock.json
+/client/.env
 
 # Server
 /server/node_modules
 /server/package-lock.json
+/server/.env
 
 # Logs and OS files
 .DS_Store

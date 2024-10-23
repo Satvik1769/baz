@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,13 +6,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
-import { ToastContainer } from "react-toastify";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-
-import "./App.css";
 import Team from "./pages/Team";
 import MyTeam from "./pages/MyTeam";
+import ProtectedRoute from "./ProtectedRoute"; // Import the ProtectedRoute
+import { ToastContainer } from "react-toastify";
+
+import "./App.css";
 
 function App() {
   return (
@@ -21,10 +22,34 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/myteam" element={<MyTeam />} />
 
+          {/* Protect these routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/team"
+            element={
+              <ProtectedRoute>
+                <Team />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/myteam"
+            element={
+              <ProtectedRoute>
+                <MyTeam />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Redirect any undefined routes */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
         <ToastContainer />
