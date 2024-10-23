@@ -1,3 +1,14 @@
-client/node_modules/
-server/node_modules/
+# Client
+/client/node_modules
+/client/package-lock.json
 
+# Server
+/server/node_modules
+/server/package-lock.json
+
+# Logs and OS files
+.DS_Store
+npm-debug.log*
+/
+
+/client/build
