@@ -15,7 +15,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
+      // check if email has @gmail.com at the end
       if (!email.endsWith("@gmail.com")) {
         toast.error("Invalid email domain. Must be @gmail.com");
         return;
@@ -26,7 +26,7 @@ export default function Login() {
         return;
       }
 
-      // Use await instead of .then()
+      //  Login api
       const response = await fetch(`${base_url}/users/login`, {
         method: "POST",
         headers: {
@@ -40,9 +40,8 @@ export default function Login() {
 
       // Check if the response is successful
       if (response.ok) {
-        console.log("Data:", data); // Log the actual data
         toast.success("Welcome Back!!");
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token); // set token in local storage
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);

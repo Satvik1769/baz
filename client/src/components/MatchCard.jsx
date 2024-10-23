@@ -50,6 +50,7 @@ const MatchCard = () => {
       <Timeline />
 
       <div className="text-center mt-5">
+        {/* Shows your team */}
         <button
           className="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700"
           onClick={() => navigate("/team")}

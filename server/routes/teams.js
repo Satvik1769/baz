@@ -8,7 +8,6 @@ const { verifyUserToken } = require("../middleware/auth.js");
 router.post("/", verifyUserToken, async (req, res) => {
   try {
     const { players } = req.body;
-    console.log("Players received in request:", players); // Check the data
 
     if (!players || players.length === 0) {
       return res.status(400).json({ message: "No players provided." });
@@ -16,7 +15,7 @@ router.post("/", verifyUserToken, async (req, res) => {
 
     const userId = req.user.id;
 
-    const playerIds = [];
+    const playerIds = []; // store players _id
     for (const player of players) {
       if (!player.id) {
         return res
@@ -64,9 +63,10 @@ router.get("/:id", verifyUserToken, async (req, res) => {
   }
 });
 
+// GET /teams  give a user's team
 router.get("/", verifyUserToken, async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user.id; // get from token
     const teams = await Team.findOne({ user: userId }).populate("players");
     console.log(teams);
     res.status(200).json(teams);

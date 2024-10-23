@@ -8,6 +8,8 @@ export default function Team() {
   const [loading, setLoading] = useState(true); // State to manage loading state
   const [error, setError] = useState(null); // State to manage errors
   const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  // get users team
   const getData = async () => {
     try {
       const response = await fetch(`${base_url}/teams`, {

@@ -26,7 +26,7 @@ export default function Signup() {
         return;
       }
 
-      // Use await instead of .then()
+      // Create New User
       const response = await fetch(`${base_url}/users`, {
         method: "POST",
         headers: {
@@ -40,7 +40,6 @@ export default function Signup() {
 
       // Check if the response is successful
       if (response.ok) {
-        console.log("Data:", data); // Log the actual data
         toast.success("User Entry Saved in Database");
         setTimeout(() => {
           navigate("/login");
@@ -48,7 +47,7 @@ export default function Signup() {
       } else {
         // Handle the error response from the server
         if (data.message.includes("email")) {
-          toast.error("This email already exists. Please use a different one.");
+          toast.error("This email already exists. Please use a different one."); // if email is already in db
         } else if (data.message.includes("userName")) {
           toast.error(
             "This username is already taken. Please choose a different one."

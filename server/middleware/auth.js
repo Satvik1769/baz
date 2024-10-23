@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 module.exports = {
+  // checks whether user is authenticated by verifying users token
   verifyUserToken: (req, res, next) => {
     let token = req.headers.authorization;
 

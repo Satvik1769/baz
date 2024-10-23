@@ -62,7 +62,7 @@ export default function MyTeam() {
       <Navbar />
       <div style={styles.container}>
         <h2>My Team</h2>
-
+        {/* nested conditions if loading and error is not showing and there are players then show otherwise show error  */}
         {loading ? (
           <p>Loading...</p>
         ) : error ? (

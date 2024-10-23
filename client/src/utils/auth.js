@@ -1,3 +1,5 @@
+// checks whether the user is authenticated (Middleware)
+
 export const isAuthenticated = () => {
   const token = localStorage.getItem("token");
 

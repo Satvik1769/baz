@@ -19,6 +19,7 @@ const TeamSelection = () => {
     selectedBy: faker.number.float({ min: 0, max: 100, precision: 0.01 }), // Updated for float
   });
 
+  // create fake players according to need   e.g all Rounder-> 4 players
   const [players, setPlayers] = useState({
     wicketKeepers: Array.from({ length: 5 }, () =>
       generatePlayer("wicketKeepers")
@@ -29,16 +30,18 @@ const TeamSelection = () => {
   });
 
   const selectPlayer = (player) => {
-    const isPlayerSelected = selectedPlayers.some((p) => p.id === player.id);
+    const isPlayerSelected = selectedPlayers.some((p) => p.id === player.id); // checks whether the player is already selected
     if (isPlayerSelected) {
-      setSelectedPlayers(selectedPlayers.filter((p) => p.id !== player.id));
+      setSelectedPlayers(selectedPlayers.filter((p) => p.id !== player.id)); // removes from the array
     } else {
-      setSelectedPlayers([...selectedPlayers, player]);
+      setSelectedPlayers([...selectedPlayers, player]); // adds the player in array
     }
   };
+
   const renderPlayers = (category) => {
     return (
       <div>
+        {/* maps over players category array */}
         {players[category].map((player) => (
           <div key={player.id} style={styles.playerCard}>
             <div>
@@ -69,6 +72,7 @@ const TeamSelection = () => {
 
   const sendData = async () => {
     try {
+      // Save the selected team in database
       const result = await fetch(`${base_url}/teams`, {
         method: "POST",
         headers: {
@@ -145,7 +149,7 @@ const TeamSelection = () => {
         <button
           style={styles.nextButton}
           onClick={() => sendData()}
-          disabled={selectedPlayers.length < 11 || selectedPlayers.length > 11}
+          disabled={selectedPlayers.length < 11 || selectedPlayers.length > 11} // active when length==11
         >
           Next
         </button>
